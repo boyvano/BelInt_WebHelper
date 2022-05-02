@@ -8,14 +8,13 @@ namespace BelInt_WebHelper.Models.ViewModels
 {
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Фамилия")]
+        public string SurName { get; set; }
 
         [Required]
         [Display(Name = "Имя")]
         public string FirstName { get; set; }
-
-        [Required]
-        [Display(Name = "Фамилия")]
-        public string SurName { get; set; }
 
         [Required]
         [Display(Name = "Отчество")]
@@ -30,9 +29,11 @@ namespace BelInt_WebHelper.Models.ViewModels
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
         [Display(Name = "Отделение")]
         public Department Department { get; set; }
+
+        [Display(Name = "Должность")]
+        public string Position { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
