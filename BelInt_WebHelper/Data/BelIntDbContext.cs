@@ -11,6 +11,7 @@ namespace BelInt_WebHelper
         public BelIntDbContext(DbContextOptions<BelIntDbContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
     }
 }
