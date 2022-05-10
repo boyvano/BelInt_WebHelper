@@ -79,7 +79,7 @@ namespace BelInt_WebHelper.Data
                 new Department() { Id = 1, Name = "Не указано", OrganisationId = 1 },
                 new Department() { Id = 2, Name = "Бухгалтерия", OrganisationId = 1 },
                 new Department() { Id = 3, Name = "Отдел тарифов и организации международных перевозок", OrganisationId = 1 },
-                new Department() { Id = 4, Name = "отдел исполнения договоров", OrganisationId = 1 }
+                new Department() { Id = 4, Name = "Отдел исполнения договоров", OrganisationId = 1 }
              );
         }
         public void SeedOrganisations(ModelBuilder builder)

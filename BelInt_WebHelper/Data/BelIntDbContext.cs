@@ -17,7 +17,7 @@ namespace BelInt_WebHelper
         public BelIntDbContext(DbContextOptions<BelIntDbContext> options)
             : base(options)
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder builder)
