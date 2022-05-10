@@ -13,7 +13,7 @@ namespace BelInt_WebHelper.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         BelIntDbContext _context;
-        private readonly List<Department> _departamentList; // Выбрать из БД список отделов
+        //private readonly List<Department> _departamentList; // Выбрать из БД список отделов
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager,BelIntDbContext context)
         {
