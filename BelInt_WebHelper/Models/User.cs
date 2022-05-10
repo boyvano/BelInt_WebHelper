@@ -17,7 +17,9 @@ namespace BelInt_WebHelper.Models
         public DateTime? DateOfBirth { get; set; }
         //public string Login { get; set; }
         public string Position { get; set; }
-        //public int? DepartmentId { get; set; }
+        
+        [System.ComponentModel.DataAnnotations.Schema.ForeignKey("Department")]
+        public int DepartmentId { get; set; }
         public Department Department { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using BelInt_WebHelper.Models;
 using BelInt_WebHelper.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BelInt_WebHelper.Controllers
 {
@@ -11,24 +12,27 @@ namespace BelInt_WebHelper.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        BelIntDbContext _context;
         private readonly List<Department> _departamentList; // Выбрать из БД список отделов
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager,BelIntDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
         [HttpGet]
         public IActionResult Register()
         {
-            return View(_departamentList);
+            ViewBag.Departments = _context.Departments.ToList();
+            return View();
         }
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                User user = new User { FirstName=model.FirstName, Position=model.Position,  SurName = model.SurName, LastName = model.LastName, Email = model.Email, Department = model.Department, UserName = model.Email, DateOfBirth = model.DateOfBirth };
+                User user = new User { FirstName=model.FirstName, Position=model.Position,  SurName = model.SurName, LastName = model.LastName, Email = model.Email, DepartmentId = model.DepartmentId, UserName = model.Email, DateOfBirth = model.DateOfBirth };
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
