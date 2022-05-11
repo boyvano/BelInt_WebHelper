@@ -64,6 +64,7 @@ namespace BelInt_WebHelper.Controllers
         {
             if (ModelState.IsValid)
             {
+                //путём проб и ошибок выяснено, что проверка происходит по NormalizedUserName, а это равняется UserName.ToUpper()
                 var result =
                     await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)

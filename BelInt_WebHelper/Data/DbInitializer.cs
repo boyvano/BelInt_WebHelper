@@ -20,7 +20,9 @@ namespace BelInt_WebHelper.Data
                 FirstName = "Иван",
                 LastName = "Иванович",
                 UserName = "Admin",
+                NormalizedUserName = "Admin".ToUpper(),
                 Email = "admin@belint.gomel.by",
+                NormalizedEmail = "admin@belint.gomel.by".ToUpper(),
                 LockoutEnabled = false,
                 DateOfBirth = DateTime.Parse("01.01.1970"),
                 DepartmentId = 1
@@ -32,7 +34,9 @@ namespace BelInt_WebHelper.Data
                 FirstName = "Зинаида",
                 LastName = "Зиждивна",
                 UserName = "FinanceGirl",
+                NormalizedUserName = "FinanceGirl".ToUpper(),
                 Email = "finance1@belint.gomel.by",
+                NormalizedEmail = "finance1@belint.gomel.by".ToUpper(),
                 LockoutEnabled = false,
                 DateOfBirth = DateTime.Parse("01.01.1970"),
                 DepartmentId = 2
@@ -44,7 +48,9 @@ namespace BelInt_WebHelper.Data
                 FirstName = "Георгий",
                 LastName = "ГейОргиевич",
                 UserName = "RainbowMan",
+                NormalizedUserName = "RainbowMan".ToUpper(),
                 Email = "gacha-macho@belint.gomel.by",
+                NormalizedEmail = "gacha-macho@belint.gomel.by".ToUpper(),
                 LockoutEnabled = false,
                 DateOfBirth = DateTime.Parse("29.02.2000"),
                 DepartmentId = 3
@@ -56,7 +62,9 @@ namespace BelInt_WebHelper.Data
                 FirstName = "Константин",
                 LastName = "Вольфович",
                 UserName = "GreatHeal",
+                NormalizedUserName = "GreatHeal".ToUpper(),
                 Email = "contract-depart@belint.gomel.by",
+                NormalizedEmail = "contract-depart@belint.gomel.by".ToUpper(),
                 LockoutEnabled = false,
                 DateOfBirth = DateTime.Parse("23.11.1975"),
                 DepartmentId = 4
@@ -65,10 +73,10 @@ namespace BelInt_WebHelper.Data
 
             PasswordHasher<User> passwordHasher = new PasswordHasher<User>();
 
-            passwordHasher.HashPassword(user1, "AdminBelint123");
-            passwordHasher.HashPassword(user2, "FinanceBelint123");
-            passwordHasher.HashPassword(user3, "FinanceBelint123");
-            passwordHasher.HashPassword(user4, "FinanceBelint123");
+            user1.PasswordHash = passwordHasher.HashPassword(user1, "AdminBelint123");
+            user2.PasswordHash = passwordHasher.HashPassword(user2, "FinanceBelint123");
+            user3.PasswordHash = passwordHasher.HashPassword(user3, "FinanceBelint123");
+            user4.PasswordHash = passwordHasher.HashPassword(user4, "FinanceBelint123");
 
             builder.Entity<User>().HasData(user1, user2, user3, user4);
         }
