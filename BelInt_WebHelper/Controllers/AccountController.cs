@@ -32,7 +32,7 @@ namespace BelInt_WebHelper.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { FirstName=model.FirstName, Position=model.Position,  SurName = model.SurName, LastName = model.LastName, Email = model.Email, DepartmentId = model.DepartmentId, UserName = model.Email, DateOfBirth = model.DateOfBirth };
+                User user = new User { FirstName=model.FirstName, Position=model.Position,  SurName = model.SurName, LastName = model.LastName, Email = model.Email, DepartmentId = model.DepartmentId, UserName = model.UserName, DateOfBirth = model.DateOfBirth };
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
