@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using BelInt_WebHelper.Models;
 using BelInt_WebHelper.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BelInt_WebHelper.Controllers
 {
@@ -21,6 +22,7 @@ namespace BelInt_WebHelper.Controllers
         public IActionResult Create() => View();
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
             if (ModelState.IsValid)
