@@ -15,10 +15,11 @@ namespace BelInt_WebHelper.Models
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DateOfBirth { get; set; }
-        public string Login { get; set; }
+        //public string Login { get; set; }
         public string Position { get; set; }
-        public string Password { get; set; }
-        public int? DepartmentId { get; set; }
+        
+        [System.ComponentModel.DataAnnotations.Schema.ForeignKey("Department")]
+        public int DepartmentId { get; set; }
         public Department Department { get; set; }
     }
 }

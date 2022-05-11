@@ -30,7 +30,7 @@ namespace BelInt_WebHelper.Models.ViewModels
         public string Email { get; set; }
 
         [Display(Name = "Отделение")]
-        public Department Department { get; set; }
+        public int DepartmentId { get; set; }
 
         [Display(Name = "Должность")]
         public string Position { get; set; }

@@ -24,12 +24,12 @@
                         </li>
                         <li class="nav-item">
                             <div class="btn-group dropright">
-                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     Договоры
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Contract" asp-action="">По Клиентам</a>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Contract" asp-action="">По Агентам</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Contract" asp-action="Client_Contracts">По Клиентам</a>
+                                    @*<a class="nav-link text-dark" asp-area="" asp-controller="Contract" asp-action="Agent_Contracts">По Агентам</a>*@
                                 </div>
                             </div>
                         </li>
@@ -53,7 +53,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - BelInt_WebHelper - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - BelInt_WebHelper - <a asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

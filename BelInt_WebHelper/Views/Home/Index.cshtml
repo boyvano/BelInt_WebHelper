@@ -3,5 +3,15 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome, @User.Identity.Name !</h1>    
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h1 class="display-4">Welcome, @User.Identity.Name !</h1>
+
+    }
+    else
+    {
+        <h1 class="display-4">Не огорчай начальство - начни работать -> <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Вход</a>
+    </h1>
+    }
 </div>
+
