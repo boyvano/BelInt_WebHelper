@@ -12,6 +12,7 @@ namespace BelInt_WebHelper.Models
         public string FirstName { get; set; }
         public string SurName { get; set; }
         public string LastName { get; set; }
+
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DateOfBirth { get; set; }
