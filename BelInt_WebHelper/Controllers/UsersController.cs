@@ -11,10 +11,11 @@ namespace BelInt_WebHelper.Controllers
     public class UsersController : Controller
     {
         UserManager<User> _userManager;
-
-        public UsersController(UserManager<User> userManager)
+        BelIntDbContext _context;
+        public UsersController(UserManager<User> userManager, BelIntDbContext context)
         {
             _userManager = userManager;
+            _context = context;
         }
 
         public IActionResult Index() => View(_userManager.Users.ToList());
@@ -44,14 +45,31 @@ namespace BelInt_WebHelper.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Edit(string id)
+        [HttpGet]
+        public async Task<IActionResult> Edit(string id, string name)
         {
-            User user = await _userManager.FindByIdAsync(id);
+            User user = new User();
+            if (!string.IsNullOrWhiteSpace(id))
+                user = await _userManager.FindByIdAsync(id);
+            else
+                user = await _userManager.FindByNameAsync(name);
             if (user == null)
             {
                 return NotFound();
             }
-            EditUserViewModel model = new EditUserViewModel { Id = user.Id, Email = user.Email, DateOfBirth = user.DateOfBirth };
+            EditUserViewModel model = new EditUserViewModel
+            {
+                Id = user.Id,
+                Email = user.Email,
+                DateOfBirth = user.DateOfBirth,
+                DepartmentId = user.DepartmentId,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Position = user.Position,
+                SurName = user.SurName
+            };
+            ViewBag.Departments = _context.Departments.ToList();
             return View(model);
         }
 
@@ -60,12 +78,20 @@ namespace BelInt_WebHelper.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
+                User user = await _userManager.FindByNameAsync(model.UserName);
                 if (user != null)
                 {
+                    user.Id = model.Id;
                     user.Email = model.Email;
-                    user.UserName = model.Email;
+                    user.NormalizedEmail = model.Email.ToUpper();
                     user.DateOfBirth = model.DateOfBirth;
+                    user.DepartmentId = model.DepartmentId;
+                    user.UserName = model.UserName;
+                    user.NormalizedUserName = user.UserName = model.UserName.ToUpper();
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    user.Position = model.Position;
+                    user.SurName = model.SurName;
 
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)

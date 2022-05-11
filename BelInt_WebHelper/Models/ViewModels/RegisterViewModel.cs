@@ -26,6 +26,10 @@ namespace BelInt_WebHelper.Models.ViewModels
         public DateTime? DateOfBirth { get; set; }
 
         [Required]
+        [Display(Name = "Логин")]
+        public string UserName { get; set; }
+
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
