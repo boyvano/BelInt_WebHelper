@@ -22,5 +22,11 @@ WordprocessingDocument.Create(pathToDocFile,
             SectionProperties props = new SectionProperties();
             body.AppendChild(props);
         }
+        public List<Contract> GetExcelItems(string pathToExcelFile = @"C:\Users\Doctor\Source\Repos\boyvano\BelInt_WebHelper\BelInt_WebHelper\Docs\курсовая для работы\Книга регистрации клиентов.xlsx")
+        {
+
+
+            return null;
+        }
     }
 }
