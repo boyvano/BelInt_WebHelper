@@ -1,0 +1,107 @@
+﻿@model IEnumerable<BelInt_WebHelper.Models.DataModels.Contract>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RowNomer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrencyContractId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegDateCurrContract)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractCurrency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractPayment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfContract)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reward)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsYearWork)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RowNomer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrencyContractId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegDateCurrContract)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractCurrency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractPayment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfContract)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reward)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsYearWork)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

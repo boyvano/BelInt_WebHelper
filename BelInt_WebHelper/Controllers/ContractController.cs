@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using BelInt_WebHelper.Models.DataModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace BelInt_WebHelper.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var getlistexcel = new Models.DataModels.GanerateContracts();
+            return View(model: getlistexcel.GetExcelItems());
         }
     }
 }
