@@ -32,7 +32,6 @@ WordprocessingDocument.Create(pathToDocFile,
             var contracts = new List<Contract>();
             using (SpreadsheetDocument doc = SpreadsheetDocument.Open(pathToExcelFile, false))
             {
-                int i = 0;
                 WorkbookPart wbPart = doc.WorkbookPart;
                 Sheet theSheet = wbPart.Workbook.Descendants<Sheet>().
       Where(s => s.Name == "договоры").FirstOrDefault();
@@ -40,37 +39,36 @@ WordprocessingDocument.Create(pathToDocFile,
                (WorksheetPart)(wbPart.GetPartById(theSheet.Id));
                 foreach (Row r in wsPart.Worksheet.Descendants<Row>())
                 {
-                    i++;
-                    if (r.RowIndex < wsPart.Worksheet.Descendants<Row>().Count() - 2)
+                    if (r.RowIndex < wsPart.Worksheet.Descendants<Row>().Count() && r.RowIndex > 2)
                     {
                         try
                         {
                             contracts.Add(new Contract()
                             {
-                                RowNomer = int.Parse(r.Elements<Cell>().ElementAt(0).CellValue.Text),
-                                //Date = DateTime.Parse(r.Elements<Cell>().ElementAt(1).CellValue.Text),
+                                RowNomer = int.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(0), wbPart)),
+                                Date = DateTime.FromOADate(double.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(1), wbPart))),
                                 ContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(2), wbPart),
                                 CompanyName = ReadExcelCell(r.Elements<Cell>().ElementAt(3), wbPart),
                                 CurrencyContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(4), wbPart),
-                                //RegDateCurrContract = DateTime.Parse(r.Elements<Cell>().ElementAt(5).CellValue.Text),
+                                RegDateCurrContract = DateTime.FromOADate(double.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(5), wbPart))),
                                 SummaryPayment = double.Parse(r.Elements<Cell>().ElementAt(6).CellValue.Text),
                                 ContractCurrency = ReadExcelCell(r.Elements<Cell>().ElementAt(7), wbPart),
                                 ContractPayment = ReadExcelCell(r.Elements<Cell>().ElementAt(8), wbPart),
                                 CountryOfRegister = ReadExcelCell(r.Elements<Cell>().ElementAt(9), wbPart),
-                                //DateOfContract = DateTime.Parse(r.Elements<Cell>().ElementAt(10).CellValue.Text),
+                                DateOfContract = ReadExcelCell(r.Elements<Cell>().ElementAt(10), wbPart),
                                 UserId = ReadExcelCell(r.Elements<Cell>().ElementAt(11), wbPart),
                                 PaymentType = ReadExcelCell(r.Elements<Cell>().ElementAt(12), wbPart),
                                 Reward = ReadExcelCell(r.Elements<Cell>().ElementAt(13), wbPart),
-                                //IsYearWork = bool.Parse(r.Elements<Cell>().ElementAt(14).CellValue.Text),
+                                IsYearWork = !string.IsNullOrWhiteSpace(ReadExcelCell(r.Elements<Cell>().ElementAt(14), wbPart)),
                             });
 
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
                             continue;
                         }
                     }
+                    else continue;
                 }
             }
             return contracts;

@@ -16,7 +16,7 @@ namespace BelInt_WebHelper.Models.DataModels
         [Display(Name = "Дата регистрации договора")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         // Номер договора
         [Display(Name = "Номер договора")]
@@ -34,7 +34,7 @@ namespace BelInt_WebHelper.Models.DataModels
         [Display(Name = "Дата регистрации договора в НБ")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime RegDateCurrContract { get; set; }
+        public DateTime? RegDateCurrContract { get; set; }
 
         // Сумма договора
         [Display(Name = "Сумма договора")]
@@ -53,10 +53,10 @@ namespace BelInt_WebHelper.Models.DataModels
         public string CountryOfRegister { get; set; }
 
         // Срок договора. Или дата, или бессрочный
-        [Display(Name = "Срок договора")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? DateOfContract { get; set; }
+        //[Display(Name = "Срок договора")]
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public string DateOfContract { get; set; }
 
         // Исполнитель. Пользователь, ответственный за исполнение данного договора
         [Display(Name = "Исполнитель")]
