@@ -11,8 +11,9 @@ namespace BelInt_WebHelper.Models.DataModels
 {
     public class GanerateContracts
     {
-        public void GenDocxContract(string pathToDocFile = @"C:\Users\myaki\source\repos\BelInt_WebHelper\BelInt_WebHelper\Docs\курсовая для работы\Договоры\temp.docx")
+        public void GenDocxContract()
         {
+            string pathToDocFile = System.IO.Path.GetTempPath() + "temp.docx";
             using WordprocessingDocument doc =
 WordprocessingDocument.Create(pathToDocFile,
                            WordprocessingDocumentType.Document,
@@ -23,8 +24,11 @@ WordprocessingDocument.Create(pathToDocFile,
             SectionProperties props = new SectionProperties();
             body.AppendChild(props);
         }
-        public List<Contract> GetExcelItems(string pathToExcelFile = @"C:\Users\myaki\source\repos\BelInt_WebHelper\BelInt_WebHelper\Docs\курсовая для работы\Книга регистрации клиентов.xlsx")
+        public List<Contract> GetExcelItems(string pathToExcelFile = "")
         {
+            var di = new System.IO.DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+            pathToExcelFile = di.Parent.Parent.Parent.FullName+ @"\Docs\курсовая для работы\Книга регистрации клиентов.xlsx";
+
             var contracts = new List<Contract>();
             using (SpreadsheetDocument doc = SpreadsheetDocument.Open(pathToExcelFile, false))
             {
