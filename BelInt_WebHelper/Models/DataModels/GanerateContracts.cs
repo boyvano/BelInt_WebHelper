@@ -27,49 +27,65 @@ WordprocessingDocument.Create(pathToDocFile,
         public List<Contract> GetExcelItems(string pathToExcelFile = "")
         {
             var di = new System.IO.DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-            pathToExcelFile = di.Parent.Parent.Parent.FullName+ @"\Docs\курсовая для работы\Книга регистрации клиентов.xlsx";
+            pathToExcelFile = di.Parent.Parent.Parent.FullName + @"\Docs\курсовая для работы\Книга регистрации клиентов.xlsx";
 
             var contracts = new List<Contract>();
             using (SpreadsheetDocument doc = SpreadsheetDocument.Open(pathToExcelFile, false))
             {
+                int i = 0;
                 WorkbookPart wbPart = doc.WorkbookPart;
-                WorksheetPart worksheetPart = wbPart.WorksheetParts.First();
-                SheetData sheetData = worksheetPart.Worksheet.Elements<SheetData>().First();
-
-                foreach (Row r in sheetData.Elements<Row>())
+                Sheet theSheet = wbPart.Workbook.Descendants<Sheet>().
+      Where(s => s.Name == "договоры").FirstOrDefault();
+                WorksheetPart wsPart =
+               (WorksheetPart)(wbPart.GetPartById(theSheet.Id));
+                foreach (Row r in wsPart.Worksheet.Descendants<Row>())
                 {
-                    try
+                    i++;
+                    if (r.RowIndex < wsPart.Worksheet.Descendants<Row>().Count() - 2)
                     {
-                        contracts.Add(new Contract()
+                        try
                         {
-                            RowNomer = int.Parse(r.Elements<Cell>().ElementAt(1).CellValue.InnerText),
-                            Date = DateTime.Parse(r.Elements<Cell>().ElementAt(2).CellValue.InnerText),
-                            ContractId = r.Elements<Cell>().ElementAt(3).CellValue.InnerText,
-                            CompanyName = r.Elements<Cell>().ElementAt(4).CellValue.InnerText,
-                            CurrencyContractId = r.Elements<Cell>().ElementAt(5).CellValue.InnerText,
-                            RegDateCurrContract = DateTime.Parse(r.Elements<Cell>().ElementAt(6).CellValue.InnerText),
-                            SummaryPayment = double.Parse(r.Elements<Cell>().ElementAt(7).CellValue.InnerText),
-                            ContractCurrency = r.Elements<Cell>().ElementAt(8).CellValue.InnerText,
-                            ContractPayment = r.Elements<Cell>().ElementAt(9).CellValue.InnerText,
-                            CountryOfRegister = r.Elements<Cell>().ElementAt(10).CellValue.InnerText,
-                            DateOfContract = DateTime.Parse(r.Elements<Cell>().ElementAt(11).CellValue.InnerText),
-                            UserId = r.Elements<Cell>().ElementAt(12).CellValue.InnerText,
-                            PaymentType = r.Elements<Cell>().ElementAt(13).CellValue.InnerText,
-                            Reward = r.Elements<Cell>().ElementAt(14).CellValue.InnerText,
-                            IsYearWork = bool.Parse(r.Elements<Cell>().ElementAt(15).CellValue.InnerText),
-                        });
+                            contracts.Add(new Contract()
+                            {
+                                RowNomer = int.Parse(r.Elements<Cell>().ElementAt(0).CellValue.Text),
+                                //Date = DateTime.Parse(r.Elements<Cell>().ElementAt(1).CellValue.Text),
+                                ContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(2), wbPart),
+                                CompanyName = ReadExcelCell(r.Elements<Cell>().ElementAt(3), wbPart),
+                                CurrencyContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(4), wbPart),
+                                //RegDateCurrContract = DateTime.Parse(r.Elements<Cell>().ElementAt(5).CellValue.Text),
+                                SummaryPayment = double.Parse(r.Elements<Cell>().ElementAt(6).CellValue.Text),
+                                ContractCurrency = ReadExcelCell(r.Elements<Cell>().ElementAt(7), wbPart),
+                                ContractPayment = ReadExcelCell(r.Elements<Cell>().ElementAt(8), wbPart),
+                                CountryOfRegister = ReadExcelCell(r.Elements<Cell>().ElementAt(9), wbPart),
+                                //DateOfContract = DateTime.Parse(r.Elements<Cell>().ElementAt(10).CellValue.Text),
+                                UserId = ReadExcelCell(r.Elements<Cell>().ElementAt(11), wbPart),
+                                PaymentType = ReadExcelCell(r.Elements<Cell>().ElementAt(12), wbPart),
+                                Reward = ReadExcelCell(r.Elements<Cell>().ElementAt(13), wbPart),
+                                //IsYearWork = bool.Parse(r.Elements<Cell>().ElementAt(14).CellValue.Text),
+                            });
 
+                        }
+                        catch (Exception)
+                        {
+
+                            continue;
+                        }
                     }
-                    catch (Exception)
-                    {
-
-                        throw;
-                    }
-
                 }
             }
-
             return contracts;
+        }
+        private string ReadExcelCell(Cell cell, WorkbookPart workbookPart)
+        {
+            var cellValue = cell.CellValue;
+            var text = (cellValue == null) ? cell.InnerText : cellValue.Text;
+            if ((cell.DataType != null) && (cell.DataType == CellValues.SharedString))
+            {
+                text = workbookPart.SharedStringTablePart.SharedStringTable
+                    .Elements<SharedStringItem>().ElementAt(
+                        Convert.ToInt32(cell.CellValue.Text)).InnerText;
+            }
+            return (text ?? string.Empty).Trim();
         }
     }
 }
