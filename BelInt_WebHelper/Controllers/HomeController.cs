@@ -20,8 +20,6 @@ namespace BelInt_WebHelper.Controllers
 
         public IActionResult Index()
         {
-            var somedoc = new Models.DataModels.GanerateContracts();
-            somedoc.GenDocxContract();
             return View();
         }
 

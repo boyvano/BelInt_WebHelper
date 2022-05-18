@@ -8,15 +8,18 @@ namespace BelInt_WebHelper.Models.DataModels
 {
     public class Contract
     {
+        [Display(Name ="")]
+        public bool IsChecked { get; set; }
+
         // Порядковый номер строки.
         [Display(Name = "Порядковый номер строки")]
-        public int RowNomer { get; set; }
+        public int RowNumber { get; set; }
 
         // Дата регистрации договора на предприятии.
         [Display(Name = "Дата регистрации договора")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? Date { get; set; }
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public string Date { get; set; }
 
         // Номер договора
         [Display(Name = "Номер договора")]
@@ -32,13 +35,13 @@ namespace BelInt_WebHelper.Models.DataModels
 
         // Дата регистрации договора в нац.банке
         [Display(Name = "Дата регистрации договора в НБ")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? RegDateCurrContract { get; set; }
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public string RegDateCurrContract { get; set; }
 
         // Сумма договора
         [Display(Name = "Сумма договора")]
-        public double SummaryPayment { get; set; }
+        public string SummaryPayment { get; set; }
 
         // Валюта договора. Та, в которой клиенту согласована стоимость оказываемой услуги        
         [Display(Name = "Валюта договора")]

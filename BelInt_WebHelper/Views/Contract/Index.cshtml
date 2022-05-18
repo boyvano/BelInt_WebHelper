@@ -1,19 +1,17 @@
 ﻿@model IEnumerable<BelInt_WebHelper.Models.DataModels.Contract>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Список договоров";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RowNomer)
+                @Html.DisplayNameFor(model => model.IsChecked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RowNumber)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
@@ -31,10 +29,16 @@
                 @Html.DisplayNameFor(model => model.RegDateCurrContract)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.SummaryPayment)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ContractCurrency)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ContractPayment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryOfRegister)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateOfContract)
@@ -58,7 +62,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.RowNomer)
+                @Html.DisplayFor(modelItem => item.IsChecked)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RowNumber)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
@@ -76,10 +83,16 @@
                 @Html.DisplayFor(modelItem => item.RegDateCurrContract)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.SummaryPayment)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ContractCurrency)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ContractPayment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryOfRegister)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateOfContract)
@@ -97,11 +110,9 @@
                 @Html.DisplayFor(modelItem => item.IsYearWork)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
+                @Html.ActionLink("Сформировать документ", "GetSomeFile", new { /* id=item.PrimaryKey */ }) 
     </tbody>
 </table>

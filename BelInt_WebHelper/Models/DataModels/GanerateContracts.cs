@@ -11,7 +11,7 @@ namespace BelInt_WebHelper.Models.DataModels
 {
     public class GanerateContracts
     {
-        public void GenDocxContract()
+        public string GenDocxContract(Contract contract)
         {
             string pathToDocFile = System.IO.Path.GetTempPath() + "temp.docx";
             using WordprocessingDocument doc =
@@ -23,6 +23,8 @@ WordprocessingDocument.Create(pathToDocFile,
             Body body = mainPart.Document.AppendChild(new Body());
             SectionProperties props = new SectionProperties();
             body.AppendChild(props);
+
+            return pathToDocFile;
         }
         public List<Contract> GetExcelItems(string pathToExcelFile = "")
         {
@@ -45,13 +47,13 @@ WordprocessingDocument.Create(pathToDocFile,
                         {
                             contracts.Add(new Contract()
                             {
-                                RowNomer = int.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(0), wbPart)),
-                                Date = DateTime.FromOADate(double.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(1), wbPart))),
+                                RowNumber = int.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(0), wbPart)),
+                                Date = ReadExcelCell(r.Elements<Cell>().ElementAt(1), wbPart),
                                 ContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(2), wbPart),
                                 CompanyName = ReadExcelCell(r.Elements<Cell>().ElementAt(3), wbPart),
                                 CurrencyContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(4), wbPart),
-                                RegDateCurrContract = DateTime.FromOADate(double.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(5), wbPart))),
-                                SummaryPayment = double.Parse(r.Elements<Cell>().ElementAt(6).CellValue.Text),
+                                RegDateCurrContract = ReadExcelCell(r.Elements<Cell>().ElementAt(5), wbPart),
+                                SummaryPayment = ReadExcelCell(r.Elements<Cell>().ElementAt(6), wbPart),
                                 ContractCurrency = ReadExcelCell(r.Elements<Cell>().ElementAt(7), wbPart),
                                 ContractPayment = ReadExcelCell(r.Elements<Cell>().ElementAt(8), wbPart),
                                 CountryOfRegister = ReadExcelCell(r.Elements<Cell>().ElementAt(9), wbPart),
