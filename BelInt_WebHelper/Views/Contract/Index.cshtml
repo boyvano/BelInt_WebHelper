@@ -62,7 +62,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IsChecked)
+                @Html.EditorFor(modelItem => item.IsChecked)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RowNumber)
