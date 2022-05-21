@@ -14,16 +14,16 @@ namespace BelInt_WebHelper.Models.DataModels
         public string GenDocxContract(Contract contract)
         {
             string pathToDocFile = System.IO.Path.GetTempPath() + "temp.docx";
-            using WordprocessingDocument doc =
-WordprocessingDocument.Create(pathToDocFile,
-                           WordprocessingDocumentType.Document,
-                           true);
-            MainDocumentPart mainPart = doc.AddMainDocumentPart();
-            mainPart.Document = new Document();
-            Body body = mainPart.Document.AppendChild(new Body());
-            SectionProperties props = new SectionProperties();
-            body.AppendChild(props);
-
+//            using WordprocessingDocument doc =
+//WordprocessingDocument.Create(pathToDocFile,
+//                           WordprocessingDocumentType.Document,
+//                           true);
+//            MainDocumentPart mainPart = doc.AddMainDocumentPart();
+//            mainPart.Document = new Document();
+//            Body body = mainPart.Document.AppendChild(new Body());
+//            SectionProperties props = new SectionProperties();
+//            body.AppendChild(props);
+            new GeneratedCode.GeneratedClass().CreatePackage(pathToDocFile);
             return pathToDocFile;
         }
         public List<Contract> GetExcelItems(string pathToExcelFile = "")
