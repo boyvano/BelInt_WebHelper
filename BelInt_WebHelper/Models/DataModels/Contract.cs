@@ -8,9 +8,6 @@ namespace BelInt_WebHelper.Models.DataModels
 {
     public class Contract
     {
-        [Display(Name ="")]
-        public bool IsChecked { get; set; }
-
         // Порядковый номер строки.
         [Display(Name = "Порядковый номер строки")]
         public int RowNumber { get; set; }

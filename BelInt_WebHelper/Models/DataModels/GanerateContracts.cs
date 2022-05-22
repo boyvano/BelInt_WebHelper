@@ -11,10 +11,11 @@ namespace BelInt_WebHelper.Models.DataModels
 {
     public class GanerateContracts
     {
-        string pathToExcelFile = new System.IO.DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName + @"\Docs\курсовая для работы\Книга регистрации клиентов.xlsx";
+        readonly string pathToExcelFile = new System.IO.DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName + @"\Docs\курсовая для работы\Книга регистрации клиентов.xlsx";
+        private string pathToDocFile;
+
         public string GenDocxContract(Contract contract)
         {
-            string pathToDocFile = "";
             if (contract == null)
                 pathToDocFile = System.IO.Path.GetTempPath() + "temp.docx";
             else
@@ -76,14 +77,15 @@ namespace BelInt_WebHelper.Models.DataModels
         }
         private Contract ReadExcelRow(Row r, WorkbookPart workbookPart)
         {
-            Contract contract = new Contract();
-            double somedate = 0;
-            contract.RowNumber = int.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(0), workbookPart));
-            contract.Date = DateTime.FromOADate(double.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(1), workbookPart))).ToString("0:dd/MM/yyyy");
-            contract.ContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(2), workbookPart);
-            contract.CompanyName = ReadExcelCell(r.Elements<Cell>().ElementAt(3), workbookPart);
-            contract.CurrencyContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(4), workbookPart);
-            contract.RegDateCurrContract = double.TryParse(ReadExcelCell(r.Elements<Cell>().ElementAt(5), workbookPart), out somedate) ? DateTime.FromOADate(somedate).ToString("0:dd/MM/yyyy") : ReadExcelCell(r.Elements<Cell>().ElementAt(5), workbookPart);
+            Contract contract = new Contract
+            {
+                RowNumber = int.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(0), workbookPart)),
+                Date = DateTime.FromOADate(double.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(1), workbookPart))).ToString("dd/MM/yyyy"),
+                ContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(2), workbookPart),
+                CompanyName = ReadExcelCell(r.Elements<Cell>().ElementAt(3), workbookPart),
+                CurrencyContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(4), workbookPart)
+            };
+            contract.RegDateCurrContract = double.TryParse(ReadExcelCell(r.Elements<Cell>().ElementAt(5), workbookPart), out double somedate) ? DateTime.FromOADate(somedate).ToString("dd/MM/yyyy") : ReadExcelCell(r.Elements<Cell>().ElementAt(5), workbookPart);
             contract.SummaryPayment = ReadExcelCell(r.Elements<Cell>().ElementAt(6), workbookPart);
             contract.ContractCurrency = ReadExcelCell(r.Elements<Cell>().ElementAt(7), workbookPart);
             contract.ContractPayment = ReadExcelCell(r.Elements<Cell>().ElementAt(8), workbookPart);
@@ -98,23 +100,21 @@ namespace BelInt_WebHelper.Models.DataModels
         public Contract ReadExcelRow(int RowNumber)
         {            
             Contract contract = new Contract();
-            using (SpreadsheetDocument doc = SpreadsheetDocument.Open(pathToExcelFile, false))
+            using SpreadsheetDocument doc = SpreadsheetDocument.Open(pathToExcelFile, false);
+            WorkbookPart wbPart = doc.WorkbookPart;
+            Sheet theSheet = wbPart.Workbook.Descendants<Sheet>().
+  Where(s => s.Name == "договоры").FirstOrDefault();
+            WorksheetPart wsPart =
+           (WorksheetPart)(wbPart.GetPartById(theSheet.Id));
+            foreach (Row r in wsPart.Worksheet.Descendants<Row>())
             {
-                WorkbookPart wbPart = doc.WorkbookPart;
-                Sheet theSheet = wbPart.Workbook.Descendants<Sheet>().
-      Where(s => s.Name == "договоры").FirstOrDefault();
-                WorksheetPart wsPart =
-               (WorksheetPart)(wbPart.GetPartById(theSheet.Id));
-                foreach (Row r in wsPart.Worksheet.Descendants<Row>())
+                if (r.RowIndex == RowNumber)
                 {
-                    if (r.RowIndex == RowNumber)
-                    {
-                        contract = ReadExcelRow(r, wbPart);
-                        return contract;
-                    }
+                    contract = ReadExcelRow(r, wbPart);
+                    return contract;
                 }
-                return contract;
             }
+            return contract;
         }
     }
 }
