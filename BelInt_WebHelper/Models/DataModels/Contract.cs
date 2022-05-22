@@ -53,10 +53,10 @@ namespace BelInt_WebHelper.Models.DataModels
         public string CountryOfRegister { get; set; }
 
         // Срок договора. Или дата, или бессрочный
-        //[Display(Name = "Срок договора")]
+        [Display(Name = "Срок договора")]
         //[DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public string DateOfContract { get; set; }
+        public string DateOffContract { get; set; }
 
         // Исполнитель. Пользователь, ответственный за исполнение данного договора
         [Display(Name = "Исполнитель")]

@@ -30,7 +30,7 @@ namespace BelInt_WebHelper.Models.DataModels
             //            Body body = mainPart.Document.AppendChild(new Body());
             //            SectionProperties props = new SectionProperties();
             //            body.AppendChild(props);
-            new GeneratedCode.GeneratedClass().CreatePackage(pathToDocFile);
+            new GeneratedCode.GeneratedClass().CreatePackage(pathToDocFile, contract);
             return pathToDocFile;
         }
         public List<Contract> GetExcelItems()
@@ -90,7 +90,7 @@ namespace BelInt_WebHelper.Models.DataModels
             contract.ContractCurrency = ReadExcelCell(r.Elements<Cell>().ElementAt(7), workbookPart);
             contract.ContractPayment = ReadExcelCell(r.Elements<Cell>().ElementAt(8), workbookPart);
             contract.CountryOfRegister = ReadExcelCell(r.Elements<Cell>().ElementAt(9), workbookPart);
-            contract.DateOfContract = ReadExcelCell(r.Elements<Cell>().ElementAt(10), workbookPart);
+            contract.DateOffContract = ReadExcelCell(r.Elements<Cell>().ElementAt(10), workbookPart);
             contract.UserId = ReadExcelCell(r.Elements<Cell>().ElementAt(11), workbookPart);
             contract.PaymentType = ReadExcelCell(r.Elements<Cell>().ElementAt(12), workbookPart);
             contract.Reward = ReadExcelCell(r.Elements<Cell>().ElementAt(13), workbookPart);
