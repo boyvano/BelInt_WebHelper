@@ -25,7 +25,7 @@ namespace BelInt_WebHelper.Models.DataModels
         [Display(Name = "Номер договора")]
         public string ContractId { get; set; }
 
-        // Наименование предприятия
+        // Наименование предприятия(клиента)
         [Display(Name = "Предприятие")]
         public string CompanyName { get; set; }
 

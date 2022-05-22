@@ -3,16 +3,15 @@
 @{
     ViewData["Title"] = "Список договоров";
 }
-
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.IsChecked)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.RowNumber)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
@@ -59,60 +58,64 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.EditorFor(modelItem => item.IsChecked)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RowNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContractId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CurrencyContractId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegDateCurrContract)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SummaryPayment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContractCurrency)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContractPayment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CountryOfRegister)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfContract)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reward)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsYearWork)
-            </td>
-            <td>
-            </td>
-        </tr>
-}
-                @Html.ActionLink("Сформировать документ", "GetSomeFile", new { /* id=item.PrimaryKey */ }) 
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>
+                    <a class="btn btn-primary" title="Сформировать" asp-action="GetSomeFile" asp-controller="Contract" asp-route-RowNumber="@item.RowNumber"><i class="fa-regular fa-file-word"></i></a>
+                    <a class="btn btn-warning" title="Просмотреть" asp-action="" asp-controller="Contract"><i class="fa-regular fa-file-pdf"></i></a>
+                    <a class="btn btn-danger" title="Удалить" asp-action="" asp-controller="Contract"><i class="fa-regular fa-trash-can"></i></a>
+                    @*@Html.EditorFor(modelItem => item.IsChecked)*@
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.RowNumber)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrencyContractId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegDateCurrContract)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SummaryPayment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractCurrency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractPayment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountryOfRegister)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfContract)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reward)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsYearWork)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

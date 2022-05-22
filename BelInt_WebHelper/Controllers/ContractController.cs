@@ -20,9 +20,11 @@ namespace BelInt_WebHelper.Controllers
         }
 
         [HttpGet]
-        public  FileResult GetSomeFile(List<Contract> contracts)
+        public  FileResult GetSomeFile(int RowNumber)
         {
-                var result = new PhysicalFileResult(getlistexcel.GenDocxContract(contracts.FirstOrDefault()), "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+            RowNumber += 2;
+            Contract contract = getlistexcel.ReadExcelRow(RowNumber);
+                var result = new PhysicalFileResult(getlistexcel.GenDocxContract(contract), "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
                 return result;
             
 

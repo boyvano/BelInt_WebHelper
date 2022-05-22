@@ -11,26 +11,29 @@ namespace BelInt_WebHelper.Models.DataModels
 {
     public class GanerateContracts
     {
+        string pathToExcelFile = new System.IO.DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName + @"\Docs\курсовая для работы\Книга регистрации клиентов.xlsx";
         public string GenDocxContract(Contract contract)
         {
-            string pathToDocFile = System.IO.Path.GetTempPath() + "temp.docx";
-//            using WordprocessingDocument doc =
-//WordprocessingDocument.Create(pathToDocFile,
-//                           WordprocessingDocumentType.Document,
-//                           true);
-//            MainDocumentPart mainPart = doc.AddMainDocumentPart();
-//            mainPart.Document = new Document();
-//            Body body = mainPart.Document.AppendChild(new Body());
-//            SectionProperties props = new SectionProperties();
-//            body.AppendChild(props);
+            string pathToDocFile = "";
+            if (contract == null)
+                pathToDocFile = System.IO.Path.GetTempPath() + "temp.docx";
+            else
+                pathToDocFile = string.Concat(System.IO.Path.GetTempPath(), @contract.CompanyName, ".docx");
+
+            //            using WordprocessingDocument doc =
+            //WordprocessingDocument.Create(pathToDocFile,
+            //                           WordprocessingDocumentType.Document,
+            //                           true);
+            //            MainDocumentPart mainPart = doc.AddMainDocumentPart();
+            //            mainPart.Document = new Document();
+            //            Body body = mainPart.Document.AppendChild(new Body());
+            //            SectionProperties props = new SectionProperties();
+            //            body.AppendChild(props);
             new GeneratedCode.GeneratedClass().CreatePackage(pathToDocFile);
             return pathToDocFile;
         }
-        public List<Contract> GetExcelItems(string pathToExcelFile = "")
+        public List<Contract> GetExcelItems()
         {
-            var di = new System.IO.DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-            pathToExcelFile = di.Parent.Parent.Parent.FullName + @"\Docs\курсовая для работы\Книга регистрации клиентов.xlsx";
-
             var contracts = new List<Contract>();
             using (SpreadsheetDocument doc = SpreadsheetDocument.Open(pathToExcelFile, false))
             {
@@ -45,24 +48,8 @@ namespace BelInt_WebHelper.Models.DataModels
                     {
                         try
                         {
-                            contracts.Add(new Contract()
-                            {
-                                RowNumber = int.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(0), wbPart)),
-                                Date = ReadExcelCell(r.Elements<Cell>().ElementAt(1), wbPart),
-                                ContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(2), wbPart),
-                                CompanyName = ReadExcelCell(r.Elements<Cell>().ElementAt(3), wbPart),
-                                CurrencyContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(4), wbPart),
-                                RegDateCurrContract = ReadExcelCell(r.Elements<Cell>().ElementAt(5), wbPart),
-                                SummaryPayment = ReadExcelCell(r.Elements<Cell>().ElementAt(6), wbPart),
-                                ContractCurrency = ReadExcelCell(r.Elements<Cell>().ElementAt(7), wbPart),
-                                ContractPayment = ReadExcelCell(r.Elements<Cell>().ElementAt(8), wbPart),
-                                CountryOfRegister = ReadExcelCell(r.Elements<Cell>().ElementAt(9), wbPart),
-                                DateOfContract = ReadExcelCell(r.Elements<Cell>().ElementAt(10), wbPart),
-                                UserId = ReadExcelCell(r.Elements<Cell>().ElementAt(11), wbPart),
-                                PaymentType = ReadExcelCell(r.Elements<Cell>().ElementAt(12), wbPart),
-                                Reward = ReadExcelCell(r.Elements<Cell>().ElementAt(13), wbPart),
-                                IsYearWork = !string.IsNullOrWhiteSpace(ReadExcelCell(r.Elements<Cell>().ElementAt(14), wbPart)),
-                            });
+                            Contract contract = ReadExcelRow(r, wbPart);
+                            contracts.Add(contract);
 
                         }
                         catch (Exception ex)
@@ -86,6 +73,48 @@ namespace BelInt_WebHelper.Models.DataModels
                         Convert.ToInt32(cell.CellValue.Text)).InnerText;
             }
             return (text ?? string.Empty).Trim();
+        }
+        private Contract ReadExcelRow(Row r, WorkbookPart workbookPart)
+        {
+            Contract contract = new Contract();
+            double somedate = 0;
+            contract.RowNumber = int.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(0), workbookPart));
+            contract.Date = DateTime.FromOADate(double.Parse(ReadExcelCell(r.Elements<Cell>().ElementAt(1), workbookPart))).ToString("0:dd/MM/yyyy");
+            contract.ContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(2), workbookPart);
+            contract.CompanyName = ReadExcelCell(r.Elements<Cell>().ElementAt(3), workbookPart);
+            contract.CurrencyContractId = ReadExcelCell(r.Elements<Cell>().ElementAt(4), workbookPart);
+            contract.RegDateCurrContract = double.TryParse(ReadExcelCell(r.Elements<Cell>().ElementAt(5), workbookPart), out somedate) ? DateTime.FromOADate(somedate).ToString("0:dd/MM/yyyy") : ReadExcelCell(r.Elements<Cell>().ElementAt(5), workbookPart);
+            contract.SummaryPayment = ReadExcelCell(r.Elements<Cell>().ElementAt(6), workbookPart);
+            contract.ContractCurrency = ReadExcelCell(r.Elements<Cell>().ElementAt(7), workbookPart);
+            contract.ContractPayment = ReadExcelCell(r.Elements<Cell>().ElementAt(8), workbookPart);
+            contract.CountryOfRegister = ReadExcelCell(r.Elements<Cell>().ElementAt(9), workbookPart);
+            contract.DateOfContract = ReadExcelCell(r.Elements<Cell>().ElementAt(10), workbookPart);
+            contract.UserId = ReadExcelCell(r.Elements<Cell>().ElementAt(11), workbookPart);
+            contract.PaymentType = ReadExcelCell(r.Elements<Cell>().ElementAt(12), workbookPart);
+            contract.Reward = ReadExcelCell(r.Elements<Cell>().ElementAt(13), workbookPart);
+            contract.IsYearWork = !string.IsNullOrWhiteSpace(ReadExcelCell(r.Elements<Cell>().ElementAt(14), workbookPart));
+            return contract;
+        }
+        public Contract ReadExcelRow(int RowNumber)
+        {            
+            Contract contract = new Contract();
+            using (SpreadsheetDocument doc = SpreadsheetDocument.Open(pathToExcelFile, false))
+            {
+                WorkbookPart wbPart = doc.WorkbookPart;
+                Sheet theSheet = wbPart.Workbook.Descendants<Sheet>().
+      Where(s => s.Name == "договоры").FirstOrDefault();
+                WorksheetPart wsPart =
+               (WorksheetPart)(wbPart.GetPartById(theSheet.Id));
+                foreach (Row r in wsPart.Worksheet.Descendants<Row>())
+                {
+                    if (r.RowIndex == RowNumber)
+                    {
+                        contract = ReadExcelRow(r, wbPart);
+                        return contract;
+                    }
+                }
+                return contract;
+            }
         }
     }
 }
