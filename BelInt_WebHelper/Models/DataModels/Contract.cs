@@ -67,7 +67,7 @@ namespace BelInt_WebHelper.Models.DataModels
         public string PaymentType { get; set; }
 
         // Вознаграждения. Ставка или процент - выбор шаблона договора
-        [Display(Name = "Вознаграждения")]
+        [Display(Name = "Вознаграждениe")]
         public string Reward { get; set; }
 
         // Работа в текущем году. Оказывались ли услуги в текущем году или нет.
