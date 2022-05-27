@@ -25,7 +25,8 @@ namespace BelInt_WebHelper.Data
                 NormalizedEmail = "admin@belint.gomel.by".ToUpper(),
                 LockoutEnabled = false,
                 DateOfBirth = DateTime.Parse("01.01.1970"),
-                DepartmentId = 1
+                DepartmentId = 1,
+                Position = "Программист"
             };
             var user2 = new User()
             {
@@ -39,7 +40,8 @@ namespace BelInt_WebHelper.Data
                 NormalizedEmail = "finance1@belint.gomel.by".ToUpper(),
                 LockoutEnabled = false,
                 DateOfBirth = DateTime.Parse("01.01.1970"),
-                DepartmentId = 2
+                DepartmentId = 2,
+                Position = "Бухгалтер"
             };
             var user3 = new User()
             {
@@ -53,7 +55,8 @@ namespace BelInt_WebHelper.Data
                 NormalizedEmail = "gacha-macho@belint.gomel.by".ToUpper(),
                 LockoutEnabled = false,
                 DateOfBirth = DateTime.Parse("29.02.2000"),
-                DepartmentId = 3
+                DepartmentId = 3,
+                Position = "Клоун"
             };
             var user4 = new User()
             {
@@ -67,7 +70,8 @@ namespace BelInt_WebHelper.Data
                 NormalizedEmail = "contract-depart@belint.gomel.by".ToUpper(),
                 LockoutEnabled = false,
                 DateOfBirth = DateTime.Parse("23.11.1975"),
-                DepartmentId = 4
+                DepartmentId = 4,
+                Position = "Ворожей"
             };
 
 
