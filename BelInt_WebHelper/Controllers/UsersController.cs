@@ -22,13 +22,13 @@ namespace BelInt_WebHelper.Controllers
 
         public IActionResult Create() => View();
 
-        [HttpPost]
+        /*[HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email, DateOfBirth = model.DateOfBirth };
+                User user = new User {Email= model.Email, DateOfBirth = model.DateOfBirth };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -43,7 +43,7 @@ namespace BelInt_WebHelper.Controllers
                 }
             }
             return View(model);
-        }
+        }*/
 
         [HttpGet]
         public async Task<IActionResult> Edit(string id, string name)
@@ -124,5 +124,49 @@ namespace BelInt_WebHelper.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        //Изменение пароля
+        public async Task<IActionResult> ChangePassword(string id)
+        {
+            User user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            ChangePasswordViewModel model = new ChangePasswordViewModel { Id = user.Id, Email = user.Email };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await _userManager.FindByIdAsync(model.Id);
+                if (user != null)
+                {
+                    IdentityResult result =
+                        await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Пользователь не найден");
+                }
+            }
+            return View(model);
+        }
+
+
     }
 }
