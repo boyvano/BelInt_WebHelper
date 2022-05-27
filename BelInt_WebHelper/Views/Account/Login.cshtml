@@ -3,15 +3,13 @@
 @{
     ViewData["Title"] = "Login";
 }
-<div class="container w-25 p-3 text-center" style="background-color: white; border-radius:5px">
-    <br />
+
 <h2>Вход в аккаунт</h2>
-<br />
 <form method="post" asp-controller="Account" asp-action="Login"
       asp-route-returnUrl="@Model.ReturnUrl">
     <div asp-validation-summary="ModelOnly"></div>
     <div>
-        <label asp-for="Email">Логин</label><br />
+        <label asp-for="Email"></label><br />
         <input asp-for="Email" />
         <span asp-validation-for="Email"></span>
     </div>
@@ -21,14 +19,10 @@
         <span asp-validation-for="Password"></span>
     </div>
     <div>
-        <br />
-        <label asp-for="RememberMe "></label>
+        <label asp-for="RememberMe"></label><br />
         <input asp-for="RememberMe" />
     </div>
-    <div class="text-center">
-        <br />
+    <div>
         <input type="submit" value="Войти" />
     </div>
 </form>
-</div>
-

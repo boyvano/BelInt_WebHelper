@@ -3,52 +3,52 @@
 @{
     ViewData["Title"] = "Список договоров";
 }
-<table class="table table-hover" style="background-color: white">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
-
+                
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.ContractId)
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.CompanyName)
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.CurrencyContractId)
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.RegDateCurrContract)
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.SummaryPayment)
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.ContractCurrency)
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.ContractPayment)
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.CountryOfRegister)
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.DateOffContract)
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.UserId)
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.PaymentType)
             </th>
-            <th style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.Reward)
             </th>
-            <th  style="text-align:center; vertical-align:text-top">
+            <th>
                 @Html.DisplayNameFor(model => model.IsYearWork)
             </th>
             <th></th>
@@ -57,27 +57,17 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr class="nav-item">
+            <tr>
+                
                 <td>
-                    <button type="button" class="btn dropdown-toggle text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        ...
-                    </button>
-                    <div class="dropdown-menu p-1">
-                    <a class="btn btn-outline-primary btn-sm" title="Сформировать" asp-action="GetSomeFile" asp-controller="Contract" asp-route-RowNumber="@item.RowNumber">
-                        <i class="fa-regular fa-file-word"></i>
-                    </a>
-                    <a class="btn btn-outline-warning btn-sm disabled" title="Просмотреть" asp-action="" asp-controller="Contract">
-                        <i class="fa-regular fa-file-pdf"></i>
-                    </a>
-                    <a class="btn btn-outline-danger btn-sm" title="Удалить" asp-action="" asp-controller="Contract">
-                        <i class="fa-regular fa-trash-can"></i>
-                    </a>
-                    </div>
+                    <a class="btn btn-primary" title="Сформировать" asp-action="GetSomeFile" asp-controller="Contract" asp-route-RowNumber="@item.RowNumber"><i class="fa-regular fa-file-word"></i></a>
+                    <a class="btn btn-warning" title="Просмотреть" asp-action="" asp-controller="Contract"><i class="fa-regular fa-file-pdf"></i></a>
+                    <a class="btn btn-danger" title="Удалить" asp-action="" asp-controller="Contract"><i class="fa-regular fa-trash-can"></i></a>
                     @*@Html.EditorFor(modelItem => item.IsChecked)*@
                 </td>
                 @*<td>
-            @Html.DisplayFor(modelItem => item.RowNumber)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.RowNumber)
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Список пользователей";
 }
-<div class="p-3" style="background-color:white; border-radius:5px">
+
 <a asp-action="Create">Добавить пользователя</a>
  
 <table class="table">
@@ -17,16 +17,15 @@
 <tr>
     <td>@user.SurName</td>
     <td>@user.FirstName</td>
-    <td>@user.LastName</td>
+    <td>@user.FirstName</td>
     <td>@user.UserName</td>
     <td>@user.Email</td>
-    <td>@user.DepartmentId</td>
+    @*<td>@user.Department.Name</td>*@
     <td>@user.Position</td>
-    @*<td>@user.DateOfBirth</td>*@
+    <td>@user.DateOfBirth</td>
     <td>
         <form asp-action="Delete" asp-route-id="@user.Id" method="post">
             <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id" asp-route-name="@user.UserName">Изменить</a>
-            <a class="btn btn-sm btn-primary" asp-action="ChangePassword" asp-route-id="@user.Id">Сменить пароль</a>
             <button type="submit" class="btn btn-sm btn-danger">
                 Удалить
             </button>
@@ -35,4 +34,3 @@
 </tr>
     }
 </table>
-</div>
