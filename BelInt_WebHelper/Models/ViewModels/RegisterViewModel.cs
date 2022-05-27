@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 namespace BelInt_WebHelper.Models.ViewModels
@@ -41,11 +38,12 @@ namespace BelInt_WebHelper.Models.ViewModels
 
         [Required]
         [DataType(DataType.Password)]
+        [StringLength(100, ErrorMessage = "Пароль должен иметь минимум 5 символов!", MinimumLength = 5)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
         [Required]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают!")]
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердить пароль")]
         public string PasswordConfirm { get; set; }
