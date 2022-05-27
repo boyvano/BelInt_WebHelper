@@ -96,7 +96,14 @@ namespace BelInt_WebHelper.Controllers
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index");
+                        if (_userManager.IsInRoleAsync(user, "Administrator").Result)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        { 
+                            return RedirectToAction("Index","Home"); 
+                        }
                     }
                     else
                     {

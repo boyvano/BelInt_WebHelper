@@ -38,7 +38,8 @@ namespace BelInt_WebHelper.Models.ViewModels
 
         [Required]
         [DataType(DataType.Password)]
-        [StringLength(100, ErrorMessage = "Пароль должен иметь минимум 5 символов!", MinimumLength = 5)]
+        [StringLength(100, ErrorMessage = "Пароль должен иметь минимум 3 символа!", MinimumLength = 3)]
+        
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
@@ -47,5 +48,6 @@ namespace BelInt_WebHelper.Models.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердить пароль")]
         public string PasswordConfirm { get; set; }
+
     }
 }
