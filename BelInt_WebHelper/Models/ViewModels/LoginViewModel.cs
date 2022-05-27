@@ -5,7 +5,7 @@ namespace BelInt_WebHelper.Models.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Логин")]
         public string Email { get; set; }
 
         [Required]

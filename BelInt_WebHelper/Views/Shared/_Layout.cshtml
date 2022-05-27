@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
 
 </head>
-<body>
+<body style="background:linear-gradient(#033985, #4173c4, #f78c20)">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color:#033985">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BelInt_WebHelper</a>
+                <a class="navbar-brand text-white font-weight-bold" asp-area="" asp-controller="Home" asp-action="Index">BelInt_WebHelper</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,24 +22,24 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Транспортно-экспедиционная деятельность</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Транспортно-экспедиционная деятельность</a>
                         </li>
                         <li class="nav-item">
                             <div class="btn-group dropright">
-                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <button type="button" class="btn dropdown-toggle text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     Договоры
                                 </button>
-                                <div class="dropdown-menu">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Contract" asp-action="">По Клиентам</a>
-                                    @*<a class="nav-link text-dark" asp-area="" asp-controller="Contract" asp-action="Agent_Contracts">По Агентам</a>*@
+                                <div class="dropdown-menu" style="background-color: #f78c20">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Contract" asp-action="">По Клиентам</a>
+                                    @*<a class="nav-link text-white" asp-area="" asp-controller="Contract" asp-action="Agent_Contracts">По Агентам</a>*@
                                 </div>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="">Платежи</a>
+                            <a class="nav-link text-white disabled" asp-area="" asp-controller="Home" asp-action="">Платежи</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a>
+                            <a class="nav-link text-white disabled" asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a>
                         </li>
 
                     </ul>
@@ -47,7 +47,8 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -55,7 +56,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - BelInt_WebHelper - <a asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a>
+            &copy; 2022 - BelInt_WebHelper - 
+            <a asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
