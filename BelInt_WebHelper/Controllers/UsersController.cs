@@ -57,9 +57,11 @@ namespace BelInt_WebHelper.Controllers
             {
                 return NotFound();
             }
+            var roles = await _userManager.GetRolesAsync(user);
             EditUserViewModel model = new EditUserViewModel
             {
                 Id = user.Id,
+                //Roles = roles,
                 Email = user.Email,
                 DateOfBirth = user.DateOfBirth,
                 DepartmentId = user.DepartmentId,
@@ -70,6 +72,8 @@ namespace BelInt_WebHelper.Controllers
                 SurName = user.SurName
             };
             ViewBag.Departments = _context.Departments.ToList();
+            ViewBag.ROles = _context.Roles.ToList();
+
             return View(model);
         }
 
