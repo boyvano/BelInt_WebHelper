@@ -24,7 +24,7 @@ namespace BelInt_WebHelper.Controllers
 
         /*[HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create(CreateUserViewModel model)
+        public async Task<IActionResult> Create(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@ namespace BelInt_WebHelper.Controllers
                     {
                         if (_userManager.IsInRoleAsync(user, "Administrator").Result)
                         {
-                            return RedirectToAction("Index");
+                            return RedirectToAction("Index","Users");
                         }
                         else
                         { 
