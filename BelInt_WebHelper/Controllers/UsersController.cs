@@ -155,6 +155,7 @@ namespace BelInt_WebHelper.Controllers
         }
 
         //Изменение пароля
+        [HttpGet]
         public async Task<IActionResult> ChangePassword(string id)
         {
             User user = await _userManager.FindByIdAsync(id);
