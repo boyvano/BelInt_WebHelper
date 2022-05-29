@@ -5,7 +5,7 @@
 
 <h1 class="text-center text-white">Редактирование пользователя</h1>
 
-<form class="container w-50 p-3" style="background-color: white; border-radius:5px">
+<form class="container p-3" style="background-color: white; border-radius:5px; width:490px">
     <form asp-action="Edit" asp-controller="Users">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">
@@ -26,7 +26,7 @@
             <input asp-for="LastName" class="form-control" />
             <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group" style="width:150px">
             <label asp-for="DateOfBirth" class="control-label"></label>
             <input asp-for="DateOfBirth" class="form-control" />
             <span asp-validation-for="DateOfBirth" class="text-danger"></span>
@@ -42,7 +42,7 @@
             <span asp-validation-for="UserName" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="DepartmentId" class="control-label"></label>
+            <label asp-for="DepartmentId" class="control-label"></label><br />
             <select class="form-group" asp-for="DepartmentId" asp-items="@(new SelectList(ViewBag.Departments, "Id","Name"))"> </select>
         </div>
         <div class="form-group">

@@ -7,7 +7,7 @@
 <h1 class="text-center text-white">Регистрация нового пользователя</h1>
 
 <hr />
-<div class="container w-50 p-3 text-white">
+<div class="container p-3 text-white" style="width:490px">
     <div>
         <form asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -26,7 +26,7 @@
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="width:150px">
                 <label asp-for="DateOfBirth" class="control-label"></label>
                 <input asp-for="DateOfBirth" class="form-control" />
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
@@ -42,8 +42,8 @@
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DepartmentId" class="control-label"></label>
-                <select class="form-group" asp-for="DepartmentId" asp-items="@(new SelectList(ViewBag.Departments, "Id","Name"))"> </select>
+                <label asp-for="DepartmentId" class="control-label"></label><br />
+                <select class="form-group"  asp-for="DepartmentId" asp-items="@(new SelectList(ViewBag.Departments, "Id","Name"))"> </select>
             </div>
             <div class="form-group">
                 <label asp-for="Position" class="control-label"></label>
