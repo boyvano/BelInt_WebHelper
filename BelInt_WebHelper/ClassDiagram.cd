@@ -1,79 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="BelInt_WebHelper.Models.ViewModels.ChangePasswordViewModel">
-    <Position X="10.25" Y="4.25" Width="1.5" />
+    <Position X="7.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAABAAAAAAgEAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Models\ViewModels\ChangePasswordViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BelInt_WebHelper.Models.ViewModels.CreateUserViewModel">
-    <Position X="8.5" Y="4.5" Width="1.5" />
+    <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\ViewModels\CreateUserViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BelInt_WebHelper.Models.ViewModels.EditUserViewModel">
-    <Position X="8" Y="6.25" Width="1.5" />
+    <Position X="6" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\ViewModels\EditUserViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BelInt_WebHelper.Models.ViewModels.LoginViewModel">
-    <Position X="4.5" Y="5" Width="1.5" />
+    <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAIAAAAgAAA=</HashCode>
       <FileName>Models\ViewModels\LoginViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BelInt_WebHelper.Models.ViewModels.RegisterViewModel">
-    <Position X="6.25" Y="2.5" Width="1.5" />
+    <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAEAEACAAgAAgAAAEAAAAgAAQAAACAQAAAAAAAAg=</HashCode>
       <FileName>Models\ViewModels\RegisterViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BelInt_WebHelper.Models.Department">
-    <Position X="2.75" Y="2.25" Width="1.5" />
+    <Position X="0.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACACAAAAAAAAAAAAAAAAQAAAAAAAAAAAIAEAAAAAA=</HashCode>
       <FileName>Models\Department.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BelInt_WebHelper.Models.Organisation">
-    <Position X="2.75" Y="4.5" Width="1.5" />
+    <Position X="0.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAQAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Organisation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BelInt_WebHelper.Models.User">
-    <Position X="4.5" Y="2.25" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAgAAgAAAEAAAAEAAQAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Models\User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BelInt_WebHelper.BelIntDbContext">
-    <Position X="8" Y="2" Width="1.5" />
+    <Position X="4" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAACAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\BelIntDbContext.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Microsoft.AspNetCore.Identity.IdentityUser" Collapsed="true">
-    <Position X="4.5" Y="0.5" Width="1.5" />
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext&lt;TUser&gt;">
-    <Position X="10.25" Y="0.75" Width="1.5" />
+    <Position X="6" Y="4.25" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Class Name="Microsoft.AspNetCore.Identity.IdentityUser&lt;TKey&gt;" Collapsed="true">
-    <Position X="2.75" Y="0.5" Width="1.5" />
+  <Class Name="Microsoft.AspNetCore.Identity.IdentityUser&lt;TKey&gt;">
+    <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier />
+  </Class>
+  <Class Name="BelInt_WebHelper.Data.DbInitializer">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAQAAAAAAAAAAAAAIAAEAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\DbInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GeneratedCode.GeneratedClass">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAEIIAAAAAAAQEAKACCAAAkAICBCAEQAAgABCABFQg=</HashCode>
+      <FileName>Data\GeneatedCode.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
