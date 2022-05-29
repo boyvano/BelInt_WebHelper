@@ -14,9 +14,11 @@ namespace BelInt_WebHelper.Models
         public string LastName { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name = "Дата рождения")]
+        [Range(typeof(DateTime), "01/01/1950", "01/01/2004", ErrorMessage = "Значение для {0} должно быть между {1} и {2}")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? DateOfBirth { get; set; }
-        //public string Login { get; set; }
+        public DateTime DateOfBirth { get; set; }
+
         public string Position { get; set; }
         
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("Department")]

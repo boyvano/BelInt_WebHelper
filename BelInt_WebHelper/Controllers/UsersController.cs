@@ -20,15 +20,34 @@ namespace BelInt_WebHelper.Controllers
 
         public IActionResult Index() => View(_userManager.Users.ToList());
 
-        public IActionResult Create() => View();
+        public IActionResult Create()
+        {
+            ViewBag.Departments = _context.Departments.ToList();
+            ViewBag.Roles = _context.Roles.ToList();
+            return View();
+        }
 
-        /*[HttpPost]
+        [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create(RegisterViewModel model)
+        public async Task<IActionResult> Create(CreateUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                User user = new User {Email= model.Email, DateOfBirth = model.DateOfBirth };
+                User user = new User
+                {
+                    //Id = user.Id,
+                    //Roles = roles,
+                    Email = model.Email,
+                    DateOfBirth = model.DateOfBirth,
+                    DepartmentId = model.DepartmentId,
+                    UserName = model.UserName,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Position = model.Position,
+                    SurName = model.SurName,
+
+
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -42,8 +61,10 @@ namespace BelInt_WebHelper.Controllers
                     }
                 }
             }
+            ViewBag.Departments = _context.Departments.ToList();
+            ViewBag.Roles = _context.Roles.ToList();
             return View(model);
-        }*/
+        }
 
         [HttpGet]
         public async Task<IActionResult> Edit(string id, string name)
@@ -72,7 +93,7 @@ namespace BelInt_WebHelper.Controllers
                 SurName = user.SurName
             };
             ViewBag.Departments = _context.Departments.ToList();
-            ViewBag.ROles = _context.Roles.ToList();
+            ViewBag.Roles = _context.Roles.ToList();
 
             return View(model);
         }
@@ -82,31 +103,30 @@ namespace BelInt_WebHelper.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByNameAsync(model.UserName);
+                User user = await _userManager.FindByNameAsync(model.Id);
                 if (user != null)
                 {
-                    user.Id = model.Id;
-                    user.Email = model.Email;
-                    user.NormalizedEmail = model.Email.ToUpper();
-                    user.DateOfBirth = model.DateOfBirth;
-                    user.DepartmentId = model.DepartmentId;
-                    user.UserName = model.UserName;
-                    user.NormalizedUserName = user.UserName = model.UserName.ToUpper();
+                    user.SurName = model.SurName;
                     user.FirstName = model.FirstName;
                     user.LastName = model.LastName;
+                    user.UserName = model.UserName;
+                    user.Email = model.Email;
+                    user.DateOfBirth = model.DateOfBirth;
+                    user.NormalizedEmail = model.Email.ToUpper();
+                    user.DepartmentId = model.DepartmentId;
+                    user.NormalizedUserName = user.UserName = model.UserName.ToUpper();
                     user.Position = model.Position;
-                    user.SurName = model.SurName;
 
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
-                        if (_userManager.IsInRoleAsync(user, "Administrator").Result)
+                        if (_userManager.IsInRoleAsync(user, "Admin").Result)
                         {
-                            return RedirectToAction("Index","Users");
+                            return RedirectToAction("Index", "Users");
                         }
                         else
-                        { 
-                            return RedirectToAction("Index","Home"); 
+                        {
+                            return RedirectToAction("Index", "Home");
                         }
                     }
                     else
@@ -118,6 +138,8 @@ namespace BelInt_WebHelper.Controllers
                     }
                 }
             }
+            ViewBag.Departments = _context.Departments.ToList();
+            ViewBag.Roles = _context.Roles.ToList();
             return View(model);
         }
 
