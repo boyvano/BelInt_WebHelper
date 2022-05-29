@@ -20,9 +20,9 @@ namespace BelInt_WebHelper.Models.ViewModels
         [Display(Name = "Отчество")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Введите Дату рождения пользователя")]
+        [Required(ErrorMessage = "Введите Дату Рождения пользователя")]
         [DataType(DataType.Date)]
-        [Range(typeof(DateTime), minDate, maxDate, ErrorMessage = "Значение для поля {0} должно быть между {1} и {2}")]
+        [Range(typeof(DateTime), minDate, maxDate, ErrorMessage = "Дата рождения должна быть между 01.01.1950 и 01.01.2004")]
         [Display(Name = "Дата рождения")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
@@ -31,7 +31,7 @@ namespace BelInt_WebHelper.Models.ViewModels
         [Display(Name = "Логин")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Введите электронный адрес почты")]
+        [Required(ErrorMessage = "Введите адрес электронной почты")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -43,11 +43,11 @@ namespace BelInt_WebHelper.Models.ViewModels
 
         [Required(ErrorMessage = "Введите Пароль пользователя")]
         [DataType(DataType.Password)]
-        [StringLength(100, ErrorMessage = "Пароль должен иметь минимум {2} символа!", MinimumLength = 3)]
+        [StringLength(100, ErrorMessage = "Пароль должен иметь минимум 3 символа!", MinimumLength = 3)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Введите Пароль пользователя")]
+        [Required(ErrorMessage = "Введите повторно пароль пользователя")]
         [Compare("Password", ErrorMessage = "Пароли не совпадают!")]
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердить пароль")]
